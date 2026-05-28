@@ -1,0 +1,51 @@
+run_params:
+  HIER_COLS: [
+        'art_pricing_model',  # Макро: модель ценообразования
+        'art_grp_lvl_0_name',  # Макро-категория
+        'art_grp_lvl_1_name',  # Подкатегория
+        'art_grp_lvl_2_name'  # Детальная (опционально) особо качества нигде не прибавляет, но всё равно оставим
+    ]
+  test_size: 0.2
+  test_size_half: 0.5
+  STATE: 42
+  datetime_cheque: '2026-03-03'
+  limit_cheque: 1500
+  recall_at_k: 10
+  n_samples: 3000
+
+w2v:
+  hiperparams:
+    VECTOR_SIZE: 64
+    WINDOW: 10
+    MIN_COUNT: 5
+    EPOCHS: 10
+    WORKERS: 4
+    SG: 1
+    NEGATIVE: 5
+  cnt_similar_items: 5
+  sample_test: 3000
+
+vae:
+  lr: 1e-3
+  batch_size: 128
+  n_epochs: 50
+  beta: 0.4
+  train_mask_p: 0.3
+  patience: 5
+  min_delta: 1e-4
+  counter: 0
+  best_val_recall: -1.0
+  best_epoch: -1
+  sample_test: 999999
+
+easy:
+  best_lambda: 150
+  sample_test: 3000
+
+hybrid:  
+  n_samples: 5000
+  topk_candidates: 100
+  best_alpha: 1
+  log_reg_C: 0.05
+  log_reg_max_iter: 300  
+  topn_ease: 10

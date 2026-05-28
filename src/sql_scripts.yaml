@@ -1,0 +1,46 @@
+GET_CHEQUE_ID:
+  select 
+      cheque_id
+      , item_number 
+      , quantity
+      , e.name
+      , art_grp_lvl_0_name
+      , art_grp_lvl_1_name
+      , art_grp_lvl_2_name
+      , art_grp_lvl_3_name
+      , art_grp_lvl_4_name
+      , art_grp_name
+      , art_grp_full_name
+      , grp_art_full_name
+      , art_pricing_model
+  from dm.cheque_item с
+  join dm.art_ext e using(article_id)
+  where true 
+    and datetime > '{datetime}'
+    and e.name like '{sku_name}%'
+  limit {limit_cheque}
+
+GET_CHEQUE:
+  select 
+        cheque_id
+        , item_number 
+        , quantity 
+        , e.name
+        , art_grp_lvl_0_name
+        , art_grp_lvl_1_name
+        , art_grp_lvl_2_name
+        , art_grp_lvl_3_name
+        , art_grp_lvl_4_name
+        , art_grp_name
+        , art_grp_full_name
+        , grp_art_full_name
+        , art_pricing_model
+  from dm.cheque_item с
+  join dm.art_ext e using(article_id)
+  where true 
+    and datetime > '{datetime}'
+    and cheque_id IN ({list_cheque_id})
+
+GET_ALL_SKU:
+  SELECT name 
+  from dm.art_ext
